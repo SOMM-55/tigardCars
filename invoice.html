@@ -156,12 +156,6 @@ body {
   color: var(--text-primary);
 }
 
-.client-address {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
 /* ========== Title Banner ========== */
 .title-banner {
   margin-bottom: 32px;
@@ -990,7 +984,6 @@ body {
       <div class="brand-subtitle">طراحی و توسعه وبسایت‌های حرفه‌ای</div>
       <div class="client-info">
         <strong>کارفرما:</strong> <span id="clientName">شرکت نمونه فروش خودرو</span>
-        <div class="client-address">تهران - خیابان ولیعصر، نبش کوچه فلانی</div>
       </div>
     </div>
     <div class="invoice-meta">
@@ -998,10 +991,6 @@ body {
       <div class="invoice-date">
         <span>📅</span>
         <span>تاریخ: <strong id="invoiceDate"></strong></span>
-      </div>
-      <div class="invoice-date">
-        <span>⏳</span>
-        <span>اعتبار تا: <strong id="validUntil"></strong></span>
       </div>
     </div>
   </header>
@@ -1655,13 +1644,11 @@ body {
   <!-- ========== FOOTER ========== -->
   <footer class="invoice-footer">
     <div class="footer-contact">
-      <div class="contact-item">📧 <strong>ایمیل:</strong> omid@example.com</div>
-      <div class="contact-item">📱 <strong>تلفن:</strong> ۰۹۱۲-۳۴۵-۶۷۸۹</div>
-      <div class="contact-item">🌐 <strong>وبسایت:</strong> omiddev.ir</div>
+      <div class="contact-item">📧 <strong>ایمیل:</strong> s.omid.m.mehr@gmail.com</div>
+      <div class="contact-item">📱 <strong>موبایل:</strong> ۰۹۱۵-۹۱۱-۳۹۰۴</div>
     </div>
     <div class="footer-actions">
       <button class="btn btn-primary" onclick="window.print()">🖨️ چاپ پیش‌فاکتور</button>
-      <button class="btn btn-secondary" onclick="resetAll()">🔄 بازنشانی</button>
     </div>
     <div class="footer-note">
       این پیش‌فاکتور به مدت <strong>۷ روز</strong> معتبر می‌باشد. قیمت‌ها به تومان می‌باشد.
@@ -1811,17 +1798,6 @@ function updateSummary() {
   document.getElementById('amountInWords').textContent = getAmountInWords(finalTotal);
 }
 
-function resetAll() {
-  const checkboxes = document.querySelectorAll('.item-card input[type="checkbox"]');
-  checkboxes.forEach(function(cb) {
-    cb.checked = true;
-  });
-  updateSummary();
-
-  // Scroll to top smoothly
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 /* ============================================================
    Click handler for card toggle
    ============================================================ */
@@ -1851,9 +1827,8 @@ function initToggle() {
    Init
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
-  // Set dates
+  // Set date
   document.getElementById('invoiceDate').textContent = getPersianDate();
-  document.getElementById('validUntil').textContent = getPersianDateAfter(7);
 
   // Bind checkbox events
   const checkboxes = document.querySelectorAll('.item-card input[type="checkbox"]');
