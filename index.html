@@ -6,36 +6,63 @@
 <title>پیش‌فاکتور | OMID DEV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* ========== CSS Custom Properties ========== */
+/* ============================================================
+   DESIGN SYSTEM — GOLD LUXURY DARK
+   ============================================================ */
 :root {
-  --bg-primary: #0f1923;  /* #0f2027 variant */
-  --bg-secondary: #111827;
-  --bg-card: #1a2236;
-  --bg-card-hover: #1f2a42;
-  --text-primary: #ffffff;
-  --text-secondary: #8899aa;
-  --text-muted: #64748b;
-  --accent-primary: #00d2ff;
-  --accent-secondary: #3a7bd5;
-  --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-  --border-color: #1e293b;
-  --border-light: #334155;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ff6b6b;
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 20px rgba(0, 210, 255, 0.15);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
-  --transition: 0.3s ease;
+  /* --- Backgrounds --- */
+  --bg-deepest:      #070b14;
+  --bg-primary:      #0a0e1a;
+  --bg-secondary:    #0f1729;
+  --bg-card:         #111d33;
+  --bg-card-hover:   #162240;
+  --bg-card-active:  #1a2a4a;
+
+  /* --- Gold Accent --- */
+  --gold:            #d4a853;
+  --gold-light:      #e4c06a;
+  --gold-dark:       #b8923f;
+  --gold-glow:       rgba(212, 168, 83, 0.25);
+  --gold-border:     rgba(212, 168, 83, 0.2);
+  --gold-gradient:   linear-gradient(135deg, #d4a853 0%, #b8923f 50%, #d4a853 100%);
+  --gold-lines:      linear-gradient(135deg, rgba(212,168,83,0.05) 25%, transparent 25%,
+                                       rgba(212,168,83,0.05) 50%, transparent 50%,
+                                       rgba(212,168,83,0.05) 75%, transparent 75%);
+
+  /* --- Silver / Neutral --- */
+  --silver:          #94a3b8;
+  --text-primary:    #f1f5f9;
+  --text-secondary:  #94a3b8;
+  --text-muted:      #5f6c84;
+  --border-color:    #1e293b;
+  --border-light:    #2a3a54;
+
+  /* --- Status --- */
+  --success:         #10b981;
+  --warning:         #f59e0b;
+  --danger:          #ef4444;
+
+  /* --- Shadows & Radius --- */
+  --shadow-card:     0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-gold:     0 0 30px rgba(212, 168, 83, 0.15);
+  --shadow-soft:     0 4px 20px rgba(0, 0, 0, 0.3);
+  --radius-sm:       6px;
+  --radius-md:       10px;
+  --radius-lg:       16px;
+  --radius-xl:       20px;
+
+  /* --- Typography --- */
+  --font-fa:         'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+  --font-en:         'Outfit', 'Vazirmatn', sans-serif;
+  --transition:      0.3s ease;
 }
 
-/* ========== Reset & Base ========== */
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -47,90 +74,172 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #0f1923 100%);
+  font-family: var(--font-fa);
+  background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.7;
   min-height: 100vh;
   direction: rtl;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(212, 168, 83, 0.02) 0%, transparent 60%);
   background-attachment: fixed;
 }
 
-/* ========== Scrollbar ========== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-light);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
+/* Subtle dot-grid overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle, rgba(212, 168, 83, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* ========== Container ========== */
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deepest); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 .invoice-container {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
   padding: 20px 16px 60px;
 }
 
-/* ========== Header ========== */
+/* ============================================================
+   HEADER — LUXURY WITH SPEED LINES
+   ============================================================ */
 .invoice-header {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 30px;
-  padding: 24px 28px;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 24px 32px;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+  overflow: hidden;
+}
+
+/* Speed lines — signature element */
+.invoice-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    105deg,
+    transparent,
+    transparent 40px,
+    rgba(212, 168, 83, 0.04) 40px,
+    rgba(212, 168, 83, 0.04) 41px
+  );
+  pointer-events: none;
+}
+
+.invoice-header::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold-gradient);
+  opacity: 0.8;
 }
 
 .brand {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  z-index: 1;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold-gradient);
+  border-radius: 12px;
+  font-size: 20px;
+  color: var(--bg-primary);
+  box-shadow: 0 0 20px rgba(212, 168, 83, 0.3);
 }
 
 .brand-name {
   font-size: 28px;
   font-weight: 900;
-  background: var(--accent-gradient);
+  background: var(--gold-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: 0.5px;
 }
 
 .brand-subtitle {
+  font-size: 12px;
+  color: var(--silver);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  padding-right: 56px;
+}
+
+.client-info {
+  margin-top: 4px;
   font-size: 13px;
   color: var(--text-secondary);
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.client-info strong {
+  color: var(--gold-light);
 }
 
 .invoice-meta {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 28px;
+  gap: 12px 24px;
   align-items: center;
 }
 
 .invoice-number-box {
-  padding: 8px 18px;
-  background: var(--accent-gradient);
+  padding: 8px 20px;
+  background: var(--gold-gradient);
   border-radius: var(--radius-sm);
+  font-family: var(--font-en);
   font-weight: 700;
   font-size: 15px;
-  color: #fff;
-  letter-spacing: 1px;
+  color: var(--bg-primary);
+  letter-spacing: 1.5px;
   white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25);
 }
 
 .invoice-date {
@@ -141,127 +250,155 @@ body {
   gap: 6px;
 }
 
+.invoice-date i {
+  color: var(--gold);
+  font-size: 14px;
+}
+
 .invoice-date strong {
   color: var(--text-primary);
   font-weight: 600;
 }
 
-.client-info {
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.client-info strong {
-  color: var(--text-primary);
-}
-
-/* ========== Title Banner ========== */
+/* ============================================================
+   TITLE BANNER
+   ============================================================ */
 .title-banner {
-  margin-bottom: 32px;
-  padding: 36px 28px;
-  background: var(--accent-gradient);
+  position: relative;
+  margin-bottom: 28px;
+  padding: 28px 28px;
+  background: linear-gradient(135deg, rgba(212,168,83,0.12) 0%, rgba(15,23,41,1) 60%);
+  border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 210, 255, 0.2);
-  position: relative;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(212,168,83,0.1);
   overflow: hidden;
 }
 
 .title-banner::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 50% 30%, rgba(212,168,83,0.08) 0%, transparent 50%);
   pointer-events: none;
+}
+
+.title-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--gold), transparent);
+  opacity: 0.5;
 }
 
 .title-banner h1 {
   font-size: 26px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   position: relative;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  letter-spacing: 0.3px;
+}
+
+.title-banner h1 i {
+  color: var(--gold);
+  margin-left: 8px;
 }
 
 .title-banner p {
   font-size: 14px;
-  color: rgba(255,255,255,0.85);
+  color: var(--silver);
   margin-top: 8px;
   position: relative;
 }
 
-/* ========== Section Title ========== */
+/* ============================================================
+   SECTION TITLE
+   ============================================================ */
 .section-title {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
+  gap: 10px;
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   color: var(--text-primary);
+}
+
+.section-title i {
+  font-size: 15px;
+  color: var(--gold);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 168, 83, 0.1);
+  border: 1px solid var(--gold-border);
+  border-radius: 8px;
 }
 
 .section-title::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(to left, var(--border-light), transparent);
+  background: linear-gradient(to left, var(--gold-border), transparent);
 }
 
-/* ========== Items Grid ========== */
+/* ============================================================
+   ITEMS GRID
+   ============================================================ */
 .items-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 36px;
+  gap: 12px;
+  margin-bottom: 32px;
 }
 
-/* ========== Item Card ========== */
+/* ============================================================
+   ITEM CARD
+   ============================================================ */
 .item-card {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 16px 18px 16px 16px;
+  padding: 16px 18px;
   cursor: pointer;
   transition: all var(--transition);
-  border-right: 4px solid transparent;
+  border-right: 3px solid transparent;
   animation: fadeInUp 0.5s ease backwards;
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 12px;
   user-select: none;
 }
 
 .item-card:hover {
   background: var(--bg-card-hover);
-  border-color: var(--border-light);
-  border-right-color: var(--accent-primary);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--gold-border);
+  border-right-color: var(--gold);
+  box-shadow: var(--shadow-gold);
   transform: translateY(-2px);
 }
 
 .item-card:focus-visible {
-  outline: 2px solid var(--accent-primary);
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
-  border-right-color: var(--accent-primary);
+  border-right-color: var(--gold);
 }
 
 /* Required items */
 .item-card.required {
-  border-right-color: var(--accent-primary) !important;
+  border-right-color: var(--gold) !important;
   cursor: default;
-  background: linear-gradient(135deg, rgba(0, 210, 255, 0.04), transparent);
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.06), transparent);
 }
 
 .item-card.required:hover {
   transform: none;
-  border-right-color: var(--accent-primary) !important;
+  border-right-color: var(--gold) !important;
 }
 
 .item-card.required .item-checkbox input[type="checkbox"]:checked + .checkmark {
@@ -273,25 +410,26 @@ body {
   position: absolute;
   top: -6px;
   right: -6px;
-  font-size: 10px;
+  font-size: 11px;
   z-index: 3;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
 }
 
 .required-label {
   display: inline-block;
-  padding: 1px 8px;
+  padding: 2px 10px;
   font-size: 10px;
-  font-weight: 600;
-  background: rgba(255, 107, 107, 0.15);
-  color: #ff6b6b;
+  font-weight: 700;
+  background: rgba(212, 168, 83, 0.15);
+  color: var(--gold);
   border-radius: 4px;
   margin-right: 6px;
-  border: 1px solid rgba(255, 107, 107, 0.2);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  font-family: var(--font-fa);
 }
 
 .item-card.unchecked {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .item-card.unchecked:hover {
@@ -299,15 +437,15 @@ body {
 }
 
 /* Staggered animation */
-.item-card:nth-child(1) { animation-delay: 0.02s; }
-.item-card:nth-child(2) { animation-delay: 0.04s; }
-.item-card:nth-child(3) { animation-delay: 0.06s; }
-.item-card:nth-child(4) { animation-delay: 0.08s; }
-.item-card:nth-child(5) { animation-delay: 0.10s; }
-.item-card:nth-child(6) { animation-delay: 0.12s; }
-.item-card:nth-child(7) { animation-delay: 0.14s; }
-.item-card:nth-child(8) { animation-delay: 0.16s; }
-.item-card:nth-child(9) { animation-delay: 0.18s; }
+.item-card:nth-child(1)  { animation-delay: 0.02s; }
+.item-card:nth-child(2)  { animation-delay: 0.04s; }
+.item-card:nth-child(3)  { animation-delay: 0.06s; }
+.item-card:nth-child(4)  { animation-delay: 0.08s; }
+.item-card:nth-child(5)  { animation-delay: 0.10s; }
+.item-card:nth-child(6)  { animation-delay: 0.12s; }
+.item-card:nth-child(7)  { animation-delay: 0.14s; }
+.item-card:nth-child(8)  { animation-delay: 0.16s; }
+.item-card:nth-child(9)  { animation-delay: 0.18s; }
 .item-card:nth-child(10) { animation-delay: 0.20s; }
 .item-card:nth-child(11) { animation-delay: 0.22s; }
 .item-card:nth-child(12) { animation-delay: 0.24s; }
@@ -320,7 +458,9 @@ body {
 .item-card:nth-child(19) { animation-delay: 0.38s; }
 .item-card:nth-child(20) { animation-delay: 0.40s; }
 
-/* ========== Custom Checkbox ========== */
+/* ============================================================
+   CUSTOM CHECKBOX — GOLD
+   ============================================================ */
 .item-checkbox {
   flex-shrink: 0;
   margin-top: 3px;
@@ -348,65 +488,89 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  color: #fff;
+  color: var(--bg-primary);
   font-size: 14px;
   font-weight: 700;
   transition: transform 0.2s ease;
 }
 
 .item-checkbox input[type="checkbox"]:checked + .checkmark {
-  background: var(--accent-gradient);
-  border-color: transparent;
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+  background: var(--gold-gradient);
+  border-color: var(--gold);
+  box-shadow: 0 0 14px rgba(212, 168, 83, 0.35);
 }
 
 .item-checkbox input[type="checkbox"]:checked + .checkmark::after {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* ========== Item Content ========== */
+/* ============================================================
+   ITEM CONTENT
+   ============================================================ */
 .item-content {
   flex: 1;
   min-width: 0;
 }
 
 .item-icon {
-  font-size: 24px;
-  line-height: 1;
-  margin-bottom: 6px;
+  flex-shrink: 0;
+  width: 38px;
+  text-align: center;
+}
+
+.item-icon i {
+  font-size: 18px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 168, 83, 0.1);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  color: var(--gold);
+  transition: all var(--transition);
+}
+
+.item-card:hover .item-icon i {
+  background: rgba(212, 168, 83, 0.18);
+  border-color: rgba(212, 168, 83, 0.3);
+  box-shadow: 0 0 16px rgba(212, 168, 83, 0.12);
 }
 
 .item-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .item-subtitle {
   font-size: 12px;
   color: var(--text-muted);
-  margin-bottom: 8px;
-  line-height: 1.5;
+  margin-bottom: 6px;
+  line-height: 1.6;
 }
 
 .item-badge {
   display: inline-block;
-  padding: 1px 8px;
+  padding: 2px 10px;
   font-size: 10px;
-  font-weight: 600;
-  background: var(--accent-gradient);
-  color: #fff;
+  font-weight: 700;
+  background: var(--gold-gradient);
+  color: var(--bg-primary);
   border-radius: 4px;
   vertical-align: middle;
   margin-right: 4px;
+  letter-spacing: 0.3px;
+  font-family: var(--font-fa);
 }
 
 .item-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .item-tag {
@@ -414,10 +578,10 @@ body {
   padding: 2px 8px;
   font-size: 10px;
   font-weight: 500;
-  background: rgba(0, 210, 255, 0.1);
-  color: var(--accent-primary);
+  background: rgba(212, 168, 83, 0.08);
+  color: var(--gold-light);
   border-radius: 4px;
-  border: 1px solid rgba(0, 210, 255, 0.15);
+  border: 1px solid rgba(212, 168, 83, 0.12);
 }
 
 .item-meta {
@@ -434,25 +598,32 @@ body {
   gap: 4px;
 }
 
-.item-meta .meta-icon {
-  font-size: 13px;
+.item-meta i {
+  font-size: 12px;
+  color: var(--gold);
+  opacity: 0.7;
 }
 
 .item-price {
   flex-shrink: 0;
   text-align: left;
   min-width: 110px;
-  padding-right: 4px;
-  margin-top: 2px;
+  padding-right: 2px;
+  margin-top: 0;
 }
 
 .price-value {
   font-size: 16px;
   font-weight: 800;
-  color: var(--accent-primary);
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   direction: ltr;
   display: inline-block;
   white-space: nowrap;
+  font-family: var(--font-en);
+  letter-spacing: 0.3px;
 }
 
 .price-currency {
@@ -462,38 +633,65 @@ body {
   margin-right: 2px;
 }
 
-/* ========== Summary Section ========== */
+/* ============================================================
+   SUMMARY SECTION
+   ============================================================ */
 .summary-section {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .summary-card {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 24px 28px;
   box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold accent line at top */
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold-gradient);
+  opacity: 0.6;
+}
+
+/* Background subtle gold pattern */
+.summary-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(212,168,83,0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .summary-divider {
   height: 3px;
-  background: var(--accent-gradient);
+  background: var(--gold-gradient);
   border-radius: 2px;
   margin-bottom: 20px;
   width: 80px;
+  opacity: 0.8;
 }
 
 .summary-rows {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-secondary);
   padding: 6px 0;
 }
@@ -504,25 +702,33 @@ body {
   gap: 8px;
 }
 
+.summary-row .label i {
+  color: var(--gold);
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
 .summary-row .value {
   font-weight: 600;
   color: var(--text-primary);
   direction: ltr;
   text-align: left;
+  font-family: var(--font-fa);
 }
 
 .summary-row.discount .value {
-  color: #ff6b6b;
+  color: var(--danger);
 }
 
 .summary-row.total {
   padding-top: 14px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--gold-border);
   margin-top: 4px;
 }
 
 .summary-row.total .label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--text-primary);
 }
@@ -530,64 +736,77 @@ body {
 .summary-row.total .value {
   font-size: 22px;
   font-weight: 900;
-  color: var(--accent-primary);
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--font-en);
+  letter-spacing: 0.5px;
 }
 
 .amount-in-words {
   margin-top: 16px;
-  padding: 14px 18px;
-  background: rgba(0, 210, 255, 0.06);
-  border: 1px solid rgba(0, 210, 255, 0.12);
+  padding: 12px 16px;
+  background: rgba(212, 168, 83, 0.06);
+  border: 1px solid rgba(212, 168, 83, 0.12);
   border-radius: var(--radius-sm);
   font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
 .amount-in-words strong {
-  color: var(--accent-primary);
+  color: var(--gold-light);
   font-weight: 600;
 }
 
-/* ========== Payment Terms ========== */
+/* ============================================================
+   PAYMENT TERMS
+   ============================================================ */
 .payment-section {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .payment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 12px;
 }
 
 .payment-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 20px 18px;
+  padding: 20px 16px 18px;
   text-align: center;
   transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .payment-card:hover {
-  border-color: var(--border-light);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--gold-border);
+  box-shadow: var(--shadow-gold);
   transform: translateY(-2px);
+  background: var(--bg-card-hover);
 }
 
 .payment-step {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--accent-gradient);
-  color: #fff;
+  background: var(--gold-gradient);
+  color: var(--bg-primary);
   font-size: 16px;
   font-weight: 800;
   margin-bottom: 10px;
-  box-shadow: 0 4px 16px rgba(0, 210, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25);
+  font-family: var(--font-fa);
 }
 
 .payment-card h4 {
@@ -604,44 +823,70 @@ body {
 }
 
 .payment-card .payment-percent {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
-  color: var(--accent-primary);
+  color: var(--gold);
   margin-top: 6px;
+  font-family: var(--font-fa);
+  letter-spacing: 0.5px;
 }
 
-/* ========== Footer ========== */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .invoice-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  padding: 22px 28px;
+  gap: 14px;
+  padding: 20px 28px;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.invoice-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold-gradient);
+  opacity: 0.4;
 }
 
 .footer-contact {
+  position: relative;
+  z-index: 1;
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.8;
 }
 
 .footer-contact strong {
-  color: var(--text-primary);
+  color: var(--gold-light);
   font-weight: 600;
 }
 
 .footer-contact .contact-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+}
+
+.footer-contact .contact-item i {
+  color: var(--gold);
+  font-size: 14px;
+  width: 18px;
+  text-align: center;
 }
 
 .footer-actions {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -652,7 +897,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px 24px;
-  font-family: var(--font-family);
+  font-family: var(--font-fa);
   font-size: 14px;
   font-weight: 600;
   border: none;
@@ -663,14 +908,19 @@ body {
 }
 
 .btn-primary {
-  background: var(--accent-gradient);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(0, 210, 255, 0.2);
+  background: var(--gold-gradient);
+  color: var(--bg-primary);
+  box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25);
+  font-weight: 700;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0, 210, 255, 0.35);
+  box-shadow: 0 6px 24px rgba(212, 168, 83, 0.4);
+}
+
+.btn-primary i {
+  font-size: 16px;
 }
 
 .btn-secondary {
@@ -695,7 +945,9 @@ body {
   border-top: 1px solid var(--border-color);
 }
 
-/* ========== Animations ========== */
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -718,7 +970,9 @@ body {
   }
 }
 
-/* ========== Print Styles ========== */
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
 @media print {
   body {
     background: #fff !important;
@@ -726,11 +980,9 @@ body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
+  body::before { display: none !important; }
 
-  .invoice-container {
-    padding: 0 !important;
-    max-width: 100% !important;
-  }
+  .invoice-container { padding: 0 !important; max-width: 100% !important; }
 
   .invoice-header {
     background: #f8f9fa !important;
@@ -738,32 +990,35 @@ body {
     box-shadow: none !important;
     page-break-inside: avoid;
   }
+  .invoice-header::before { display: none !important; }
+  .invoice-header::after { display: none !important; }
 
+  .brand-icon {
+    background: #0a0e1a !important;
+    color: #fff !important;
+  }
   .brand-name {
-    -webkit-text-fill-color: #0a0e17 !important;
-    color: #0a0e17 !important;
+    -webkit-text-fill-color: #b8923f !important;
+    color: #b8923f !important;
     background: none !important;
   }
-
   .invoice-number-box {
-    background: #0a0e17 !important;
+    background: #b8923f !important;
     color: #fff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
   .title-banner {
-    background: linear-gradient(135deg, #005f7a, #1a4a8a) !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    background: #f1f0ed !important;
+    border-color: #dee2e6 !important;
     box-shadow: none !important;
     page-break-inside: avoid;
   }
-
-  .title-banner h1,
-  .title-banner p {
-    color: #fff !important;
-  }
+  .title-banner::before { display: none !important; }
+  .title-banner::after { display: none !important; }
+  .title-banner h1 { color: #1a1a2e !important; }
+  .title-banner p { color: #555 !important; }
 
   .item-card {
     background: #f8f9fa !important;
@@ -773,25 +1028,30 @@ body {
     border-right-color: transparent !important;
     page-break-inside: avoid;
   }
-
   .item-card:hover {
     transform: none !important;
     box-shadow: none !important;
     border-right-color: transparent !important;
     background: #f8f9fa !important;
   }
+  .item-card.unchecked { opacity: 0.5 !important; }
 
-  .item-card.unchecked {
-    opacity: 0.5 !important;
-  }
-
-  .checkmark {
-    border-color: #adb5bd !important;
-  }
-
+  .checkmark { border-color: #adb5bd !important; }
   .item-checkbox input[type="checkbox"]:checked + .checkmark {
-    background: #0a0e17 !important;
+    background: #b8923f !important;
     box-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .item-icon i {
+    border-color: #dee2e6 !important;
+    background: #eee !important;
+    color: #b8923f !important;
+  }
+  .item-badge {
+    background: #b8923f !important;
+    color: #fff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -802,25 +1062,18 @@ body {
     box-shadow: none !important;
     page-break-inside: avoid;
   }
-
-  .summary-divider {
-    background: #0a0e17 !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .summary-row .value {
-    color: #1a1a2e !important;
-  }
-
-  .summary-row.total .value {
-    color: #0a0e17 !important;
-  }
+  .summary-card::before { display: none !important; }
+  .summary-card::after { display: none !important; }
+  .summary-divider { background: #b8923f !important; }
+  .summary-row .value { color: #1a1a2e !important; }
+  .summary-row.total .value { color: #b8923f !important; }
+  .summary-row.discount .value { color: #dc3545 !important; }
 
   .amount-in-words {
     background: #f1f3f5 !important;
     border-color: #dee2e6 !important;
   }
+  .amount-in-words strong { color: #b8923f !important; }
 
   .payment-card {
     background: #f8f9fa !important;
@@ -829,16 +1082,13 @@ body {
     transform: none !important;
     page-break-inside: avoid;
   }
-
   .payment-step {
-    background: #0a0e17 !important;
+    background: #b8923f !important;
+    color: #fff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-
-  .payment-card .payment-percent {
-    color: #0a0e17 !important;
-  }
+  .payment-card .payment-percent { color: #b8923f !important; }
 
   .invoice-footer {
     background: #f8f9fa !important;
@@ -846,17 +1096,12 @@ body {
     box-shadow: none !important;
     page-break-inside: avoid;
   }
+  .invoice-footer::before { display: none !important; }
 
-  .btn {
-    display: none !important;
-  }
-
-  .footer-note {
-    border-top-color: #dee2e6 !important;
-  }
+  .btn { display: none !important; }
+  .footer-note { border-top-color: #dee2e6 !important; }
 
   .item-card:nth-child(1),
-  .item-card:nth-child(2),
   .item-card:nth-child(3),
   .item-card:nth-child(4),
   .item-card:nth-child(5),
@@ -884,130 +1129,66 @@ body {
   }
 }
 
-/* ========== Responsive ========== */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
   .invoice-header {
     flex-direction: column;
     align-items: stretch;
-    padding: 18px;
+    padding: 18px 20px;
   }
 
   .invoice-meta {
     justify-content: space-between;
   }
 
-  .brand-name {
-    font-size: 22px;
-  }
+  .brand-name { font-size: 22px; }
 
-  .items-grid {
-    grid-template-columns: 1fr;
-  }
+  .items-grid { grid-template-columns: 1fr; }
 
-  .title-banner {
-    padding: 24px 18px;
-  }
+  .title-banner { padding: 24px 20px; }
+  .title-banner h1 { font-size: 19px; }
 
-  .title-banner h1 {
-    font-size: 20px;
-  }
+  .payment-grid { grid-template-columns: 1fr; }
 
-  .payment-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-card {
-    padding: 18px;
-  }
+  .summary-card { padding: 18px 20px; }
 
   .invoice-footer {
     flex-direction: column;
     align-items: stretch;
-    padding: 18px;
+    padding: 18px 20px;
   }
+  .footer-actions { justify-content: center; }
 
-  .footer-actions {
-    justify-content: center;
-  }
-
-  .item-price {
-    min-width: 80px;
-  }
-
-  .price-value {
-    font-size: 14px;
-  }
+  .item-price { min-width: 80px; }
 }
 
 @media (max-width: 480px) {
-  .invoice-container {
-    padding: 12px 10px 40px;
-  }
+  .invoice-container { padding: 10px 8px 40px; }
 
-  .invoice-header {
-    padding: 14px;
-    gap: 14px;
-  }
+  .invoice-header { padding: 14px 16px; gap: 12px; }
+  .brand-name { font-size: 18px; }
+  .brand-icon { width: 36px; height: 36px; font-size: 16px; }
+  .invoice-number-box { font-size: 12px; padding: 6px 14px; }
 
-  .brand-name {
-    font-size: 20px;
-  }
+  .title-banner { padding: 20px 16px; }
+  .title-banner h1 { font-size: 16px; }
+  .title-banner p { font-size: 12px; }
 
-  .invoice-number-box {
-    font-size: 12px;
-    padding: 6px 14px;
-  }
+  .item-card { padding: 12px 14px; gap: 10px; }
+  .item-icon i { width: 32px; height: 32px; font-size: 15px; }
+  .item-title { font-size: 13px; }
+  .item-price { min-width: auto; text-align: right; }
+  .price-value { font-size: 13px; }
 
-  .title-banner h1 {
-    font-size: 17px;
-  }
+  .summary-card { padding: 16px 16px; }
+  .summary-row { font-size: 13px; }
+  .summary-row.total .value { font-size: 17px; }
 
-  .title-banner p {
-    font-size: 12px;
-  }
+  .payment-card { padding: 16px 14px; }
 
-  .item-card {
-    padding: 14px;
-    gap: 10px;
-  }
-
-  .item-icon {
-    font-size: 20px;
-  }
-
-  .item-title {
-    font-size: 13px;
-  }
-
-  .item-price {
-    min-width: auto;
-    text-align: right;
-  }
-
-  .price-value {
-    font-size: 13px;
-  }
-
-  .summary-card {
-    padding: 14px;
-  }
-
-  .summary-row {
-    font-size: 13px;
-  }
-
-  .summary-row.total .value {
-    font-size: 18px;
-  }
-
-  .payment-card {
-    padding: 16px 14px;
-  }
-
-  .btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
+  .btn { padding: 8px 16px; font-size: 13px; }
 }
 </style>
 </head>
@@ -1017,17 +1198,21 @@ body {
 
   <!-- ========== HEADER ========== -->
   <header class="invoice-header">
+
     <div class="brand">
-      <div class="brand-name">🚀 OMID DEV</div>
-      <div class="brand-subtitle">طراحی و توسعه وبسایت‌های حرفه‌ای</div>
+      <div class="brand-logo">
+        <div class="brand-icon"><i class="fas fa-code"></i></div>
+        <div class="brand-name">OMID DEV</div>
+      </div>
+      <div class="brand-subtitle"><i class="fas fa-cogs"></i> طراحی و توسعه وبسایت‌های حرفه‌ای</div>
       <div class="client-info">
-        <strong>کارفرما:</strong> <span id="clientName">شرکت نمونه فروش خودرو</span>
+        <i class="fas fa-user-tie"></i> <strong>کارفرما:</strong> <span id="clientName">شرکت نمونه فروش خودرو</span>
       </div>
     </div>
     <div class="invoice-meta">
       <div class="invoice-number-box">INV-۱۴۰۵-۰۰۱</div>
       <div class="invoice-date">
-        <span>📅</span>
+        <i class="far fa-calendar-alt"></i>
         <span>تاریخ: <strong id="invoiceDate"></strong></span>
       </div>
     </div>
@@ -1035,12 +1220,12 @@ body {
 
   <!-- ========== TITLE BANNER ========== -->
   <div class="title-banner">
-    <h1>پیش‌فاکتور طراحی و توسعه وبسایت</h1>
+    <h1><i class="fas fa-file-invoice"></i> پیش‌فاکتور طراحی و توسعه وبسایت</h1>
     <p>نمایندگی فروش خودرو &mdash; وبسایت کامل با پنل مدیریت و ابزارهای پیشرفته</p>
   </div>
 
   <!-- ========== ITEMS LIST ========== -->
-  <div class="section-title"><h2>📋 خدمات و ماژول‌ها</h2></div>
+  <div class="section-title"><h2><i class="fas fa-list"></i> خدمات و ماژول‌ها</h2></div>
 
   <div class="items-grid" id="itemsGrid">
 
@@ -1051,7 +1236,7 @@ body {
         <label for="item-home" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">🏠</div>
+        <div class="item-icon"><i class="fas fa-house"></i></div>
         <div class="item-title">صفحه اصلی <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">طراحی و توسعه صفحه اصلی با Next.js — شامل هدر، Hero Section، اسلایدر خودروهای ویژه، بخش معرفی خدمات، فرم تماس سریع و فوتر کامل</div>
         <div class="item-tags">
@@ -1062,9 +1247,9 @@ body {
           <span class="item-tag">🎬 Framer Motion</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۷ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۷ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1080,7 +1265,7 @@ body {
         <label for="item-catalog" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">🚗</div>
+        <div class="item-icon"><i class="fas fa-car"></i></div>
         <div class="item-title">کاتالوگ خودروها <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">نمایش لیست خودروها با ISR، فیلتر پیشرفته، صفحه‌بندی، گالری تصاویر و مشخصات فنی کامل</div>
         <div class="item-tags">
@@ -1091,9 +1276,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۰ روز</span>
-          <span><span class="meta-icon">✏️</span> ۴ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۰ روز</span>
+          <span><i class="fas fa-pen"></i> ۴ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1109,7 +1294,7 @@ body {
         <label for="item-details" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">📋</div>
+        <div class="item-icon"><i class="fas fa-file-lines"></i></div>
         <div class="item-title">صفحه جزئیات خودرو <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">صفحه اختصاصی هر خودرو با Dynamic Routes، گالری تصاویر، جدول مشخصات فنی، انتخاب رنگ و آپشن، قیمت‌گذاری پویا</div>
         <div class="item-tags">
@@ -1120,9 +1305,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۸ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۸ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1138,7 +1323,7 @@ body {
         <label for="item-search" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">🔍</div>
+        <div class="item-icon"><i class="fas fa-magnifying-glass"></i></div>
         <div class="item-title">جستجو و فیلتر پیشرفته <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">سیستم جستجوی هوشمند با فیلتر ترکیبی بر اساس برند، مدل، سال، قیمت، رنگ، وضعیت — با استفاده از Server Actions و URL Search Params</div>
         <div class="item-tags">
@@ -1149,9 +1334,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۲ روز</span>
-          <span><span class="meta-icon">✏️</span> ۵ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۲ روز</span>
+          <span><i class="fas fa-pen"></i> ۵ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1167,7 +1352,7 @@ body {
         <label for="item-about" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">🏢</div>
+        <div class="item-icon"><i class="fas fa-building"></i></div>
         <div class="item-title">درباره ما <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">صفحات معرفی شرکت، تیم، تاریخچه، افتخارات و گالری تصاویر — با قابلیت مدیریت محتوا</div>
         <div class="item-tags">
@@ -1177,9 +1362,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۴ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۴ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1195,7 +1380,7 @@ body {
         <label for="item-contact" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">📞</div>
+        <div class="item-icon"><i class="fas fa-phone"></i></div>
         <div class="item-title">تماس با ما <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">فرم تماس هوشمند با اعتبارسنجی سمت کلاینت و سرور، نقشه تعاملی، اطلاعات شعب و ساعات کاری</div>
         <div class="item-tags">
@@ -1205,9 +1390,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۴ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۴ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1223,7 +1408,7 @@ body {
         <label for="item-admin" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">⚙️</div>
+        <div class="item-icon"><i class="fas fa-gear"></i></div>
         <div class="item-title">پنل مدیریت <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">داشبورد مدیریت کامل با React Admin، مدیریت خودروها، کاربران، سفارشات، محتوا، تنظیمات و گزارشات آماری</div>
         <div class="item-tags">
@@ -1234,9 +1419,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۸ روز</span>
-          <span><span class="meta-icon">✏️</span> ۶ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۸ روز</span>
+          <span><i class="fas fa-pen"></i> ۶ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1252,7 +1437,7 @@ body {
         <label for="item-blog" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">📝</div>
+        <div class="item-icon"><i class="fas fa-pen-fancy"></i></div>
         <div class="item-title">وبلاگ / مقالات <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">سیستم مدیریت محتوای کامل با دسته‌بندی، برچسب‌ها، نظرات کاربران، جستجوی داخلی و SEO بهینه</div>
         <div class="item-tags">
@@ -1263,9 +1448,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۷ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۷ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1281,7 +1466,7 @@ body {
         <label for="item-compare" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">⚖️</div>
+        <div class="item-icon"><i class="fas fa-scale-balanced"></i></div>
         <div class="item-title">مقایسه خودروها <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">ابزار مقایسه حرفه‌ای با قابلیت انتخاب چند خودرو، نمایش جدولی مشخصات فنی، اختلاف قیمت و نمودار مقایسه</div>
         <div class="item-tags">
@@ -1291,9 +1476,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۶ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۶ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1309,7 +1494,7 @@ body {
         <label for="item-loan" class="checkmark"></label>
       </div>
       <div class="item-content">
-        <div class="item-icon">🧮</div>
+        <div class="item-icon"><i class="fas fa-calculator"></i></div>
         <div class="item-title">محاسبه اقساط / وام <span class="item-badge">Next.js</span></div>
         <div class="item-subtitle">ماشین حساب اقساط با محاسبه سود، جدول بازپرداخت، مقایسه بانک‌ها و خروجی PDF — با React Hook Form</div>
         <div class="item-tags">
@@ -1319,9 +1504,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۶ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۶ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1330,9 +1515,9 @@ body {
       </div>
     </div>
 
-    <!-- ===== NEW TECHNICAL ITEMS ===== -->
+    <!-- ===== TECHNICAL ITEMS (اجباری) ===== -->
 
-    <!-- Item 11: System Architecture -->
+    <!-- Item 11 -->
     <div class="item-card required" data-price="55000000" data-id="architecture" data-title="معماری و طراحی سیستم">
       <div class="item-checkbox">
         <input type="checkbox" id="item-architecture" checked disabled>
@@ -1340,7 +1525,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🏗️</div>
+        <div class="item-icon"><i class="fas fa-sitemap"></i></div>
         <div class="item-title">معماری و طراحی سیستم <span class="item-badge">Enterprise</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی معماری کامل پروژه شامل ساختار پوشه‌ها، کامپوننت‌ها، ماژول‌ها، مسیریابی، مدیریت state، الگوهای طراحی و بهترین شیوه‌های Next.js</div>
         <div class="item-tags">
@@ -1351,9 +1536,9 @@ body {
           <span class="item-tag">🔗 API Design</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۵ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۵ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1362,7 +1547,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 12: Security & Auth -->
+    <!-- Item 12 -->
     <div class="item-card required" data-price="48000000" data-id="security" data-title="امنیت و احراز هویت">
       <div class="item-checkbox">
         <input type="checkbox" id="item-security" checked disabled>
@@ -1370,7 +1555,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🔒</div>
+        <div class="item-icon"><i class="fas fa-shield-halved"></i></div>
         <div class="item-title">امنیت و احراز هویت <span class="item-badge">NextAuth</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">پیاده‌سازی کامل امنیت با NextAuth.js، احراز هویت دو مرحله‌ای، مدیریت نقش‌ها و سطح دسترسی، محافظت از API ها، رمزنگاری داده‌ها</div>
         <div class="item-tags">
@@ -1381,9 +1566,9 @@ body {
           <span class="item-tag">🛡️ CSRF/XSS</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۰ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۰ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1392,7 +1577,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 13: Database & API -->
+    <!-- Item 13 -->
     <div class="item-card required" data-price="50000000" data-id="database" data-title="طراحی API و پایگاه داده">
       <div class="item-checkbox">
         <input type="checkbox" id="item-database" checked disabled>
@@ -1400,7 +1585,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🗄️</div>
+        <div class="item-icon"><i class="fas fa-database"></i></div>
         <div class="item-title">طراحی API و پایگاه داده <span class="item-badge">Prisma</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی و پیاده‌سازی پایگاه داده با PostgreSQL و Prisma ORM، API های RESTful و GraphQL، بهینه‌سازی کوئری‌ها و ایندکس‌گذاری</div>
         <div class="item-tags">
@@ -1411,9 +1596,9 @@ body {
           <span class="item-tag">⚡ Query Opt.</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۰ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۰ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1422,7 +1607,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 14: SEO & Optimization -->
+    <!-- Item 14 -->
     <div class="item-card required" data-price="38000000" data-id="seo" data-title="SEO و بهینه‌سازی">
       <div class="item-checkbox">
         <input type="checkbox" id="item-seo" checked disabled>
@@ -1430,7 +1615,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🚀</div>
+        <div class="item-icon"><i class="fas fa-rocket"></i></div>
         <div class="item-title">SEO و بهینه‌سازی سرعت <span class="item-badge">Core Web Vitals</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">بهینه‌سازی کامل برای موتورهای جستجو، Core Web Vitals، LCP/LSI/CLS، متادیتا، Structured Data، sitemap، performance optimization</div>
         <div class="item-tags">
@@ -1441,9 +1626,9 @@ body {
           <span class="item-tag">⚡ Image Opt.</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۷ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۷ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1452,7 +1637,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 15: PWA & Responsive -->
+    <!-- Item 15 -->
     <div class="item-card required" data-price="25000000" data-id="pwa" data-title="طراحی واکنش‌گرا و PWA">
       <div class="item-checkbox">
         <input type="checkbox" id="item-pwa" checked disabled>
@@ -1460,7 +1645,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">📱</div>
+        <div class="item-icon"><i class="fas fa-mobile-screen-button"></i></div>
         <div class="item-title">طراحی واکنش‌گرا و PWA <span class="item-badge">Progressive</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی کاملاً واکنش‌گرا برای موبایل، تبلت و دسکتاپ. پیاده‌سازی PWA با Service Worker، push notification، حالت آفلاین و نصب روی دستگاه</div>
         <div class="item-tags">
@@ -1471,9 +1656,9 @@ body {
           <span class="item-tag">🎨 Tailwind</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۶ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۶ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1482,7 +1667,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 16: Testing -->
+    <!-- Item 16 -->
     <div class="item-card required" data-price="42000000" data-id="testing" data-title="تست و تضمین کیفیت">
       <div class="item-checkbox">
         <input type="checkbox" id="item-testing" checked disabled>
@@ -1490,7 +1675,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🧪</div>
+        <div class="item-icon"><i class="fas fa-flask"></i></div>
         <div class="item-title">تست و تضمین کیفیت <span class="item-badge">QA</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">نوشتن تست‌های Unit با Jest، تست کامپوننت با React Testing Library، تست E2E با Cypress، تست API و یکپارچه‌سازی</div>
         <div class="item-tags">
@@ -1501,9 +1686,9 @@ body {
           <span class="item-tag">🔗 API Tests</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۰ روز</span>
-          <span><span class="meta-icon">✏️</span> ۳ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۰ روز</span>
+          <span><i class="fas fa-pen"></i> ۳ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1512,7 +1697,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 17: DevOps -->
+    <!-- Item 17 -->
     <div class="item-card required" data-price="32000000" data-id="devops" data-title="استقرار و DevOps">
       <div class="item-checkbox">
         <input type="checkbox" id="item-devops" checked disabled>
@@ -1520,7 +1705,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">📦</div>
+        <div class="item-icon"><i class="fas fa-cloud-arrow-up"></i></div>
         <div class="item-title">استقرار و CI/CD <span class="item-badge">DevOps</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">راه‌اندازی Vercel/سرور اختصاصی، پیاده‌سازی CI/CD با GitHub Actions، داکرایز کردن پروژه، مانیتورینگ و لاگینگ</div>
         <div class="item-tags">
@@ -1531,9 +1716,9 @@ body {
           <span class="item-tag">🌐 Custom Domain</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۵ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۵ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1542,7 +1727,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 18: UI/UX Design -->
+    <!-- Item 18 -->
     <div class="item-card required" data-price="48000000" data-id="ui-ux" data-title="طراحی UI/UX">
       <div class="item-checkbox">
         <input type="checkbox" id="item-uiux" checked disabled>
@@ -1550,7 +1735,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🎨</div>
+        <div class="item-icon"><i class="fas fa-paint-brush"></i></div>
         <div class="item-title">طراحی UI/UX <span class="item-badge">Figma</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی کامل رابط کاربری و تجربه کاربری در Figma شامل وایرفریم، پروتوتایپ تعاملی، دیزاین سیستم، کامپوننت‌ها و طراحی ریسپانسیو</div>
         <div class="item-tags">
@@ -1561,9 +1746,9 @@ body {
           <span class="item-tag">📱 Responsive</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۱۲ روز</span>
-          <span><span class="meta-icon">✏️</span> ۴ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۱۲ روز</span>
+          <span><i class="fas fa-pen"></i> ۴ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1572,7 +1757,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 19: Documentation -->
+    <!-- Item 19 -->
     <div class="item-card required" data-price="20000000" data-id="docs" data-title="مستندات فنی">
       <div class="item-checkbox">
         <input type="checkbox" id="item-docs" checked disabled>
@@ -1580,7 +1765,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">📚</div>
+        <div class="item-icon"><i class="fas fa-book"></i></div>
         <div class="item-title">مستندات فنی و آموزش <span class="item-badge">Docs</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">تهیه مستندات کامل فنی شامل معماری سیستم، راهنمای نصب و استقرار، راهنمای API، مستندات کاربری و جلسات آموزش تیم کارفرما</div>
         <div class="item-tags">
@@ -1591,9 +1776,9 @@ body {
           <span class="item-tag">🔧 Setup Guide</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۱</span>
-          <span><span class="meta-icon">⏱</span> ۷ روز</span>
-          <span><span class="meta-icon">✏️</span> ۲ ویرایش</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۱</span>
+          <span><i class="fas fa-clock"></i> ۷ روز</span>
+          <span><i class="fas fa-pen"></i> ۲ ویرایش</span>
         </div>
       </div>
       <div class="item-price">
@@ -1602,7 +1787,7 @@ body {
       </div>
     </div>
 
-    <!-- Item 20: Support -->
+    <!-- Item 20 -->
     <div class="item-card required" data-price="12000000" data-id="support" data-title="پشتیبانی و نگهداری">
       <div class="item-checkbox">
         <input type="checkbox" id="item-support" checked disabled>
@@ -1610,7 +1795,7 @@ body {
         <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
-        <div class="item-icon">🔄</div>
+        <div class="item-icon"><i class="fas fa-arrows-rotate"></i></div>
         <div class="item-title">پشتیبانی و نگهداری <span class="item-badge">۳ ماهه</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">پشتیبانی فنی سه ماهه شامل رفع باگ، بروزرسانی وابستگی‌ها، پشتیبان‌گیری دوره‌ای، مانیتورینگ و مشاوره فنی</div>
         <div class="item-tags">
@@ -1621,9 +1806,9 @@ body {
           <span class="item-tag">🎓 Support</span>
         </div>
         <div class="item-meta">
-          <span><span class="meta-icon">📦</span> <span class="meta-label">تعداد:</span> ۳ ماه</span>
-          <span><span class="meta-icon">⏱</span> ۳ ماه</span>
-          <span><span class="meta-icon">✏️</span> نامحدود</span>
+          <span><i class="fas fa-box"></i> <span class="meta-label">تعداد:</span> ۳ ماه</span>
+          <span><i class="fas fa-clock"></i> ۳ ماه</span>
+          <span><i class="fas fa-pen"></i> نامحدود</span>
         </div>
       </div>
       <div class="item-price">
@@ -1636,28 +1821,29 @@ body {
 
   <!-- ========== PRICE SUMMARY ========== -->
   <div class="summary-section">
-    <div class="section-title"><h2>💰 خلاصه قیمت</h2></div>
+    <div class="section-title"><h2><i class="fas fa-sack-dollar"></i> خلاصه قیمت</h2></div>
     <div class="summary-card">
       <div class="summary-divider"></div>
       <div class="summary-rows">
         <div class="summary-row">
-          <span class="label">📦 تعداد خدمات انتخاب شده</span>
+          <span class="label"><i class="fas fa-cubes"></i> تعداد خدمات انتخاب شده</span>
           <span class="value" id="selectedCount">۱۰</span>
         </div>
         <div class="summary-row">
-          <span class="label">💵 جمع کل</span>
+          <span class="label"><i class="fas fa-coins"></i> جمع کل</span>
           <span class="value" id="totalPrice">۱۰۸,۰۰۰,۰۰۰ تومان</span>
         </div>
         <div class="summary-row discount">
-          <span class="label">🎉 تخفیف (۵٪)</span>
-          <span class="value" id="discountAmount">۵,۴۰۰,۰۰۰- تومان</span>
+          <span class="label"><i class="fas fa-gift"></i> تخفیف (۵٪)</span>
+          <span class="value" id="discountAmount">- ۵,۴۰۰,۰۰۰ تومان</span>
         </div>
         <div class="summary-row total">
-          <span class="label">🅿️ مبلغ قابل پرداخت</span>
+          <span class="label"><i class="fas fa-hand-holding-dollar"></i> مبلغ قابل پرداخت</span>
           <span class="value" id="finalTotal">۱۰۲,۶۰۰,۰۰۰ تومان</span>
         </div>
       </div>
       <div class="amount-in-words">
+        <i class="fas fa-pen" style="margin-left: 6px; color: var(--gold);"></i>
         <strong>مبلغ به حروف:</strong>
         <span id="amountInWords">صد و دو میلیون و ششصد هزار تومان</span>
       </div>
@@ -1666,7 +1852,7 @@ body {
 
   <!-- ========== PAYMENT TERMS ========== -->
   <div class="payment-section">
-    <div class="section-title"><h2>📌 شرایط پرداخت</h2></div>
+    <div class="section-title"><h2><i class="fas fa-clipboard-list"></i> شرایط پرداخت</h2></div>
     <div class="payment-grid">
       <div class="payment-card">
         <div class="payment-step">۱</div>
@@ -1692,13 +1878,14 @@ body {
   <!-- ========== FOOTER ========== -->
   <footer class="invoice-footer">
     <div class="footer-contact">
-      <div class="contact-item">📧 <strong>ایمیل:</strong> s.omid.m.mehr@gmail.com</div>
-      <div class="contact-item">📱 <strong>موبایل:</strong> ۰۹۱۵-۹۱۱-۳۹۰۴</div>
+      <div class="contact-item"><i class="fas fa-envelope"></i> <strong>ایمیل:</strong> s.omid.m.mehr@gmail.com</div>
+      <div class="contact-item"><i class="fas fa-phone-alt"></i> <strong>موبایل:</strong> ۰۹۱۵-۹۱۱-۳۹۰۴</div>
     </div>
     <div class="footer-actions">
-      <button class="btn btn-primary" onclick="window.print()">🖨️ چاپ پیش‌فاکتور</button>
+      <button class="btn btn-primary" onclick="window.print()"><i class="fas fa-print"></i> چاپ پیش‌فاکتور</button>
     </div>
     <div class="footer-note">
+      <i class="far fa-clock" style="margin-left: 4px;"></i>
       این پیش‌فاکتور به مدت <strong>۷ روز</strong> معتبر می‌باشد. قیمت‌ها به تومان می‌باشد.
     </div>
   </footer>
@@ -1792,7 +1979,6 @@ function getPersianDate() {
     const formatter = new Intl.DateTimeFormat('fa-IR', options);
     return formatter.format(now);
   } catch (e) {
-    // Fallback: compute manually
     const persianYear = now.getFullYear() - 621;
     return toPersianNum(String(persianYear)) + '/' + toPersianNum(String(now.getMonth() + 1)) + '/' + toPersianNum(String(now.getDate()));
   }
@@ -1829,7 +2015,6 @@ function updateSummary() {
     const isRequired = item.classList.contains('required');
 
     if (isRequired) {
-      // Required items: always counted, always checked
       total += price;
       requiredCount++;
       item.classList.remove('unchecked');
@@ -1846,7 +2031,6 @@ function updateSummary() {
   const finalTotal = total - discount;
   const totalCount = requiredCount + selectableCount;
 
-  // Update DOM
   document.getElementById('selectedCount').textContent = formatNumber(selectableCount) + ' انتخابی + ' + formatNumber(requiredCount) + ' اجباری';
 
   document.getElementById('totalPrice').textContent = formatNumber(total) + ' تومان';
@@ -1863,13 +2047,11 @@ function initToggle() {
   const cards = document.querySelectorAll('.item-card:not(.required)');
   cards.forEach(function(card) {
     card.addEventListener('click', function(e) {
-      // Don't toggle if the click was directly on a checkbox or label
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
       const checkbox = card.querySelector('input[type="checkbox"]');
       checkbox.checked = !checkbox.checked;
       updateSummary();
     });
-    // Keyboard support: Enter/Space to toggle
     card.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -1885,10 +2067,8 @@ function initToggle() {
    Init
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
-  // Set date
   document.getElementById('invoiceDate').textContent = getPersianDate();
 
-  // Bind checkbox events
   const checkboxes = document.querySelectorAll('.item-card input[type="checkbox"]');
   checkboxes.forEach(function(cb) {
     cb.addEventListener('change', updateSummary);
