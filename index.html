@@ -252,6 +252,44 @@ body {
   border-right-color: var(--accent-primary);
 }
 
+/* Required items */
+.item-card.required {
+  border-right-color: var(--accent-primary) !important;
+  cursor: default;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.04), transparent);
+}
+
+.item-card.required:hover {
+  transform: none;
+  border-right-color: var(--accent-primary) !important;
+}
+
+.item-card.required .item-checkbox input[type="checkbox"]:checked + .checkmark {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.required-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 10px;
+  z-index: 3;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.required-label {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+  border-radius: 4px;
+  margin-right: 6px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
 .item-card.unchecked {
   opacity: 0.6;
 }
@@ -1295,14 +1333,15 @@ body {
     <!-- ===== NEW TECHNICAL ITEMS ===== -->
 
     <!-- Item 11: System Architecture -->
-    <div class="item-card" data-price="55000000" data-id="architecture" data-title="معماری و طراحی سیستم" role="button" tabindex="0">
+    <div class="item-card required" data-price="55000000" data-id="architecture" data-title="معماری و طراحی سیستم">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-architecture" checked>
+        <input type="checkbox" id="item-architecture" checked disabled>
         <label for="item-architecture" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🏗️</div>
-        <div class="item-title">معماری و طراحی سیستم <span class="item-badge">Enterprise</span></div>
+        <div class="item-title">معماری و طراحی سیستم <span class="item-badge">Enterprise</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی معماری کامل پروژه شامل ساختار پوشه‌ها، کامپوننت‌ها، ماژول‌ها، مسیریابی، مدیریت state، الگوهای طراحی و بهترین شیوه‌های Next.js</div>
         <div class="item-tags">
           <span class="item-tag">🏗️ Clean Architecture</span>
@@ -1324,14 +1363,15 @@ body {
     </div>
 
     <!-- Item 12: Security & Auth -->
-    <div class="item-card" data-price="48000000" data-id="security" data-title="امنیت و احراز هویت" role="button" tabindex="0">
+    <div class="item-card required" data-price="48000000" data-id="security" data-title="امنیت و احراز هویت">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-security" checked>
+        <input type="checkbox" id="item-security" checked disabled>
         <label for="item-security" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🔒</div>
-        <div class="item-title">امنیت و احراز هویت <span class="item-badge">NextAuth</span></div>
+        <div class="item-title">امنیت و احراز هویت <span class="item-badge">NextAuth</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">پیاده‌سازی کامل امنیت با NextAuth.js، احراز هویت دو مرحله‌ای، مدیریت نقش‌ها و سطح دسترسی، محافظت از API ها، رمزنگاری داده‌ها</div>
         <div class="item-tags">
           <span class="item-tag">🔐 NextAuth.js</span>
@@ -1353,14 +1393,15 @@ body {
     </div>
 
     <!-- Item 13: Database & API -->
-    <div class="item-card" data-price="50000000" data-id="database" data-title="طراحی API و پایگاه داده" role="button" tabindex="0">
+    <div class="item-card required" data-price="50000000" data-id="database" data-title="طراحی API و پایگاه داده">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-database" checked>
+        <input type="checkbox" id="item-database" checked disabled>
         <label for="item-database" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🗄️</div>
-        <div class="item-title">طراحی API و پایگاه داده <span class="item-badge">Prisma</span></div>
+        <div class="item-title">طراحی API و پایگاه داده <span class="item-badge">Prisma</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی و پیاده‌سازی پایگاه داده با PostgreSQL و Prisma ORM، API های RESTful و GraphQL، بهینه‌سازی کوئری‌ها و ایندکس‌گذاری</div>
         <div class="item-tags">
           <span class="item-tag">🗄️ PostgreSQL</span>
@@ -1382,14 +1423,15 @@ body {
     </div>
 
     <!-- Item 14: SEO & Optimization -->
-    <div class="item-card" data-price="38000000" data-id="seo" data-title="SEO و بهینه‌سازی" role="button" tabindex="0">
+    <div class="item-card required" data-price="38000000" data-id="seo" data-title="SEO و بهینه‌سازی">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-seo" checked>
+        <input type="checkbox" id="item-seo" checked disabled>
         <label for="item-seo" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🚀</div>
-        <div class="item-title">SEO و بهینه‌سازی سرعت <span class="item-badge">Core Web Vitals</span></div>
+        <div class="item-title">SEO و بهینه‌سازی سرعت <span class="item-badge">Core Web Vitals</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">بهینه‌سازی کامل برای موتورهای جستجو، Core Web Vitals، LCP/LSI/CLS، متادیتا، Structured Data، sitemap، performance optimization</div>
         <div class="item-tags">
           <span class="item-tag">🚀 Core Web Vitals</span>
@@ -1411,14 +1453,15 @@ body {
     </div>
 
     <!-- Item 15: PWA & Responsive -->
-    <div class="item-card" data-price="25000000" data-id="pwa" data-title="طراحی واکنش‌گرا و PWA" role="button" tabindex="0">
+    <div class="item-card required" data-price="25000000" data-id="pwa" data-title="طراحی واکنش‌گرا و PWA">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-pwa" checked>
+        <input type="checkbox" id="item-pwa" checked disabled>
         <label for="item-pwa" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">📱</div>
-        <div class="item-title">طراحی واکنش‌گرا و PWA <span class="item-badge">Progressive</span></div>
+        <div class="item-title">طراحی واکنش‌گرا و PWA <span class="item-badge">Progressive</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی کاملاً واکنش‌گرا برای موبایل، تبلت و دسکتاپ. پیاده‌سازی PWA با Service Worker، push notification، حالت آفلاین و نصب روی دستگاه</div>
         <div class="item-tags">
           <span class="item-tag">📱 Mobile First</span>
@@ -1440,14 +1483,15 @@ body {
     </div>
 
     <!-- Item 16: Testing -->
-    <div class="item-card" data-price="42000000" data-id="testing" data-title="تست و تضمین کیفیت" role="button" tabindex="0">
+    <div class="item-card required" data-price="42000000" data-id="testing" data-title="تست و تضمین کیفیت">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-testing" checked>
+        <input type="checkbox" id="item-testing" checked disabled>
         <label for="item-testing" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🧪</div>
-        <div class="item-title">تست و تضمین کیفیت <span class="item-badge">QA</span></div>
+        <div class="item-title">تست و تضمین کیفیت <span class="item-badge">QA</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">نوشتن تست‌های Unit با Jest، تست کامپوننت با React Testing Library، تست E2E با Cypress، تست API و یکپارچه‌سازی</div>
         <div class="item-tags">
           <span class="item-tag">🧪 Jest</span>
@@ -1469,14 +1513,15 @@ body {
     </div>
 
     <!-- Item 17: DevOps -->
-    <div class="item-card" data-price="32000000" data-id="devops" data-title="استقرار و DevOps" role="button" tabindex="0">
+    <div class="item-card required" data-price="32000000" data-id="devops" data-title="استقرار و DevOps">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-devops" checked>
+        <input type="checkbox" id="item-devops" checked disabled>
         <label for="item-devops" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">📦</div>
-        <div class="item-title">استقرار و CI/CD <span class="item-badge">DevOps</span></div>
+        <div class="item-title">استقرار و CI/CD <span class="item-badge">DevOps</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">راه‌اندازی Vercel/سرور اختصاصی، پیاده‌سازی CI/CD با GitHub Actions، داکرایز کردن پروژه، مانیتورینگ و لاگینگ</div>
         <div class="item-tags">
           <span class="item-tag">🚀 Vercel</span>
@@ -1498,14 +1543,15 @@ body {
     </div>
 
     <!-- Item 18: UI/UX Design -->
-    <div class="item-card" data-price="48000000" data-id="ui-ux" data-title="طراحی UI/UX" role="button" tabindex="0">
+    <div class="item-card required" data-price="48000000" data-id="ui-ux" data-title="طراحی UI/UX">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-uiux" checked>
+        <input type="checkbox" id="item-uiux" checked disabled>
         <label for="item-uiux" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🎨</div>
-        <div class="item-title">طراحی UI/UX <span class="item-badge">Figma</span></div>
+        <div class="item-title">طراحی UI/UX <span class="item-badge">Figma</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">طراحی کامل رابط کاربری و تجربه کاربری در Figma شامل وایرفریم، پروتوتایپ تعاملی، دیزاین سیستم، کامپوننت‌ها و طراحی ریسپانسیو</div>
         <div class="item-tags">
           <span class="item-tag">🎨 Figma</span>
@@ -1527,14 +1573,15 @@ body {
     </div>
 
     <!-- Item 19: Documentation -->
-    <div class="item-card" data-price="20000000" data-id="docs" data-title="مستندات فنی" role="button" tabindex="0">
+    <div class="item-card required" data-price="20000000" data-id="docs" data-title="مستندات فنی">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-docs" checked>
+        <input type="checkbox" id="item-docs" checked disabled>
         <label for="item-docs" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">📚</div>
-        <div class="item-title">مستندات فنی و آموزش <span class="item-badge">Docs</span></div>
+        <div class="item-title">مستندات فنی و آموزش <span class="item-badge">Docs</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">تهیه مستندات کامل فنی شامل معماری سیستم، راهنمای نصب و استقرار، راهنمای API، مستندات کاربری و جلسات آموزش تیم کارفرما</div>
         <div class="item-tags">
           <span class="item-tag">📄 Technical Docs</span>
@@ -1556,14 +1603,15 @@ body {
     </div>
 
     <!-- Item 20: Support -->
-    <div class="item-card" data-price="12000000" data-id="support" data-title="پشتیبانی و نگهداری" role="button" tabindex="0">
+    <div class="item-card required" data-price="12000000" data-id="support" data-title="پشتیبانی و نگهداری">
       <div class="item-checkbox">
-        <input type="checkbox" id="item-support" checked>
+        <input type="checkbox" id="item-support" checked disabled>
         <label for="item-support" class="checkmark"></label>
+        <span class="required-badge">🔒</span>
       </div>
       <div class="item-content">
         <div class="item-icon">🔄</div>
-        <div class="item-title">پشتیبانی و نگهداری <span class="item-badge">۳ ماهه</span></div>
+        <div class="item-title">پشتیبانی و نگهداری <span class="item-badge">۳ ماهه</span> <span class="required-label">اجباری</span></div>
         <div class="item-subtitle">پشتیبانی فنی سه ماهه شامل رفع باگ، بروزرسانی وابستگی‌ها، پشتیبان‌گیری دوره‌ای، مانیتورینگ و مشاوره فنی</div>
         <div class="item-tags">
           <span class="item-tag">🔧 Bug Fixing</span>
@@ -1772,13 +1820,22 @@ const DISCOUNT_RATE = 0.05;
 function updateSummary() {
   const items = document.querySelectorAll('.item-card');
   let total = 0;
-  let count = 0;
+  let selectableCount = 0;
+  let requiredCount = 0;
 
   items.forEach(function(item) {
     const checkbox = item.querySelector('input[type="checkbox"]');
-    if (checkbox.checked) {
-      total += parseInt(item.getAttribute('data-price'), 10);
-      count++;
+    const price = parseInt(item.getAttribute('data-price'), 10);
+    const isRequired = item.classList.contains('required');
+
+    if (isRequired) {
+      // Required items: always counted, always checked
+      total += price;
+      requiredCount++;
+      item.classList.remove('unchecked');
+    } else if (checkbox.checked) {
+      total += price;
+      selectableCount++;
       item.classList.remove('unchecked');
     } else {
       item.classList.add('unchecked');
@@ -1787,9 +1844,10 @@ function updateSummary() {
 
   const discount = Math.round(total * DISCOUNT_RATE);
   const finalTotal = total - discount;
+  const totalCount = requiredCount + selectableCount;
 
   // Update DOM
-  document.getElementById('selectedCount').textContent = formatNumber(count);
+  document.getElementById('selectedCount').textContent = formatNumber(selectableCount) + ' انتخابی + ' + formatNumber(requiredCount) + ' اجباری';
 
   document.getElementById('totalPrice').textContent = formatNumber(total) + ' تومان';
   document.getElementById('discountAmount').textContent = '- ' + formatNumber(discount) + ' تومان';
@@ -1802,7 +1860,7 @@ function updateSummary() {
    Click handler for card toggle
    ============================================================ */
 function initToggle() {
-  const cards = document.querySelectorAll('.item-card');
+  const cards = document.querySelectorAll('.item-card:not(.required)');
   cards.forEach(function(card) {
     card.addEventListener('click', function(e) {
       // Don't toggle if the click was directly on a checkbox or label
