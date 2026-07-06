@@ -84,6 +84,13 @@ body {
     radial-gradient(ellipse at 20% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 50%, rgba(212, 168, 83, 0.02) 0%, transparent 60%);
   background-attachment: fixed;
+  animation: ambientGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 50% 50%; }
+  100% { background-position: 100% 100%; }
 }
 
 /* Subtle dot-grid overlay */
@@ -95,6 +102,12 @@ body::before {
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
+  animation: dotFade 8s ease-in-out infinite alternate;
+}
+
+@keyframes dotFade {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 /* ============================================================
@@ -144,10 +157,17 @@ body::before {
     105deg,
     transparent,
     transparent 40px,
-    rgba(212, 168, 83, 0.04) 40px,
-    rgba(212, 168, 83, 0.04) 41px
+    rgba(212, 168, 83, 0.05) 40px,
+    rgba(212, 168, 83, 0.05) 41px
   );
   pointer-events: none;
+  animation: speedSweep 6s ease-in-out infinite;
+}
+
+@keyframes speedSweep {
+  0%   { transform: translateX(-10%); opacity: 0.6; }
+  50%  { transform: translateX(5%);  opacity: 1; }
+  100% { transform: translateX(-10%); opacity: 0.6; }
 }
 
 .invoice-header::after {
@@ -377,10 +397,10 @@ body::before {
 
 .item-card:hover {
   background: var(--bg-card-hover);
-  border-color: var(--gold-border);
+  border-color: var(--gold);
   border-right-color: var(--gold);
-  box-shadow: var(--shadow-gold);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold), 0 0 40px rgba(212, 168, 83, 0.08);
+  transform: translateY(-3px);
 }
 
 .item-card:focus-visible {
@@ -498,6 +518,13 @@ body::before {
   background: var(--gold-gradient);
   border-color: var(--gold);
   box-shadow: 0 0 14px rgba(212, 168, 83, 0.35);
+  animation: checkPop 0.3s ease;
+}
+
+@keyframes checkPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
 .item-checkbox input[type="checkbox"]:checked + .checkmark::after {
@@ -616,6 +643,7 @@ body::before {
   font-size: 16px;
   font-weight: 800;
   background: var(--gold-gradient);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -624,6 +652,13 @@ body::before {
   white-space: nowrap;
   font-family: var(--font-en);
   letter-spacing: 0.3px;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
 }
 
 .price-currency {
@@ -645,9 +680,15 @@ body::before {
   border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
   padding: 24px 28px;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card), 0 0 40px rgba(212, 168, 83, 0.05);
   position: relative;
   overflow: hidden;
+  animation: cardGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes cardGlow {
+  0%   { box-shadow: var(--shadow-card), 0 0 30px rgba(212, 168, 83, 0.04); }
+  100% { box-shadow: var(--shadow-card), 0 0 50px rgba(212, 168, 83, 0.1); }
 }
 
 /* Gold accent line at top */
@@ -737,18 +778,21 @@ body::before {
   font-size: 22px;
   font-weight: 900;
   background: var(--gold-gradient);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-family: var(--font-en);
   letter-spacing: 0.5px;
+  animation: goldShimmer 3s ease-in-out infinite;
 }
 
 .amount-in-words {
   margin-top: 16px;
-  padding: 12px 16px;
+  padding: 12px 18px 12px 16px;
   background: rgba(212, 168, 83, 0.06);
   border: 1px solid rgba(212, 168, 83, 0.12);
+  border-right: 3px solid var(--gold);
   border-radius: var(--radius-sm);
   font-size: 13px;
   color: var(--text-secondary);
@@ -807,6 +851,14 @@ body::before {
   margin-bottom: 10px;
   box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25);
   font-family: var(--font-fa);
+  animation: stepPulse 3s ease-in-out infinite;
+  animation-delay: calc(var(--step-index, 0) * 0.5s);
+}
+
+@keyframes stepPulse {
+  0%   { box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25); }
+  50%  { box-shadow: 0 4px 24px rgba(212, 168, 83, 0.45); transform: scale(1.03); }
+  100% { box-shadow: 0 4px 16px rgba(212, 168, 83, 0.25); }
 }
 
 .payment-card h4 {
@@ -967,6 +1019,22 @@ body::before {
   }
   .item-card {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body::before {
+    animation: none !important;
+  }
+  .invoice-header::before {
+    animation: none !important;
+  }
+  .price-value,
+  .summary-row.total .value {
+    animation: none !important;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
@@ -1060,18 +1128,20 @@ body::before {
     background: #f8f9fa !important;
     border-color: #dee2e6 !important;
     box-shadow: none !important;
+    animation: none !important;
     page-break-inside: avoid;
   }
   .summary-card::before { display: none !important; }
   .summary-card::after { display: none !important; }
   .summary-divider { background: #b8923f !important; }
   .summary-row .value { color: #1a1a2e !important; }
-  .summary-row.total .value { color: #b8923f !important; }
+  .summary-row.total .value { color: #b8923f !important; animation: none !important; background: none !important; -webkit-text-fill-color: #b8923f !important; }
   .summary-row.discount .value { color: #dc3545 !important; }
 
   .amount-in-words {
     background: #f1f3f5 !important;
     border-color: #dee2e6 !important;
+    border-right-color: #b8923f !important;
   }
   .amount-in-words strong { color: #b8923f !important; }
 
@@ -1085,6 +1155,8 @@ body::before {
   .payment-step {
     background: #b8923f !important;
     color: #fff !important;
+    animation: none !important;
+    box-shadow: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -1855,19 +1927,19 @@ body::before {
     <div class="section-title"><h2><i class="fas fa-clipboard-list"></i> شرایط پرداخت</h2></div>
     <div class="payment-grid">
       <div class="payment-card">
-        <div class="payment-step">۱</div>
+        <div class="payment-step" style="--step-index: 0">۱</div>
         <h4>پیش پرداخت</h4>
         <p>هنگام عقد قرارداد</p>
         <div class="payment-percent">۴۰٪</div>
       </div>
       <div class="payment-card">
-        <div class="payment-step">۲</div>
+        <div class="payment-step" style="--step-index: 1">۲</div>
         <h4>تحویل نسخه اولیه</h4>
         <p>پس از تایید اولیه پروژه</p>
         <div class="payment-percent">۳۰٪</div>
       </div>
       <div class="payment-card">
-        <div class="payment-step">۳</div>
+        <div class="payment-step" style="--step-index: 2">۳</div>
         <h4>تحویل نهایی</h4>
         <p>پس از تایید نهایی کارفرما</p>
         <div class="payment-percent">۳۰٪</div>
@@ -2029,14 +2101,17 @@ function updateSummary() {
 
   const discount = Math.round(total * DISCOUNT_RATE);
   const finalTotal = total - discount;
-  const totalCount = requiredCount + selectableCount;
+
+  // Cancel any running count-up animations
+  ['totalPrice', 'finalTotal'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el && el._animFrame) cancelAnimationFrame(el._animFrame);
+  });
 
   document.getElementById('selectedCount').textContent = formatNumber(selectableCount) + ' انتخابی + ' + formatNumber(requiredCount) + ' اجباری';
-
   document.getElementById('totalPrice').textContent = formatNumber(total) + ' تومان';
   document.getElementById('discountAmount').textContent = '- ' + formatNumber(discount) + ' تومان';
   document.getElementById('finalTotal').textContent = formatNumber(finalTotal) + ' تومان';
-
   document.getElementById('amountInWords').textContent = getAmountInWords(finalTotal);
 }
 
@@ -2064,6 +2139,95 @@ function initToggle() {
 }
 
 /* ============================================================
+   Count-up Animation (one-time on scroll)
+   ============================================================ */
+function animateValue(el, start, end, duration) {
+  if (!el) return;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(start + (end - start) * eased);
+    el.textContent = formatNumber(current) + ' تومان';
+    if (progress < 1) {
+      el._animFrame = requestAnimationFrame(update);
+    }
+  }
+  if (el._animFrame) cancelAnimationFrame(el._animFrame);
+  el._animFrame = requestAnimationFrame(update);
+}
+
+/* ============================================================
+   Scroll-triggered Card Reveal
+   ============================================================ */
+function initScrollReveal() {
+  if (typeof IntersectionObserver === 'undefined') return;
+
+  const cards = document.querySelectorAll('.item-card');
+  cards.forEach(function(card, i) {
+    // Reset animation
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    card.style.transitionDelay = (i * 0.03) + 's';
+  });
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  cards.forEach(function(card) {
+    observer.observe(card);
+  });
+}
+
+/* ============================================================
+   Scroll-triggered Count-up for Summary
+   ============================================================ */
+function initSummaryCountUp() {
+  if (typeof IntersectionObserver === 'undefined') return;
+
+  const summary = document.querySelector('.summary-card');
+  if (!summary) return;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        // Calculate total
+        const items = document.querySelectorAll('.item-card');
+        let total = 0;
+        items.forEach(function(item) {
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          const price = parseInt(item.getAttribute('data-price'), 10);
+          const isRequired = item.classList.contains('required');
+          if (isRequired || checkbox.checked) {
+            total += price;
+          }
+        });
+        const discount = Math.round(total * DISCOUNT_RATE);
+        const finalTotal = total - discount;
+
+        const totalEl = document.getElementById('totalPrice');
+        const finalEl = document.getElementById('finalTotal');
+        if (totalEl) { totalEl._countUp = true; animateValue(totalEl, 0, total, 800); }
+        if (finalEl) { finalEl._countUp = true; animateValue(finalEl, 0, finalTotal, 1000); }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(summary);
+}
+
+/* ============================================================
    Init
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
@@ -2076,6 +2240,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   initToggle();
   updateSummary();
+  initScrollReveal();
+  initSummaryCountUp();
 });
 </script>
 
